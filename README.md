@@ -1,7 +1,7 @@
 # Databases class Labarotory work 3
 This project adds ASP.NET to an existing database and creates interfaces to add/edit/remove persistant data from the database. 
 
-## Requiriments
+## Requirements
 ASP.NET, MariaDB, NuGet MySQL.Data package
 
 ## Setup 
