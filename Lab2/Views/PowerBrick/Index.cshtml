@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Lab2.ViewModels.PowerBrickViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>SF FORMA</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pavadinimas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Power)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Efficiency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fan_size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Swithces)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_Brick)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Motherboard)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pavadinimas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Power)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Efficiency)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fan_size)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Swithces)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_Brick)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Motherboard)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.id_Brick  }) |
+            @Html.ActionLink("Details", "Details", new {  id=item.id_Brick }) |
+            @Html.ActionLink("Delete", "Delete", new {  id=item.id_Brick })
+        </td>
+    </tr>
+}
+
+</table>

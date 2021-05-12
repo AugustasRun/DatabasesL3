@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Lab2.Models.Motherboard>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>SF FORMA</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pavadinimas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dydis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cpu_Tipas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USB_ivestys)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ram_Lizdai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pcie_Lizdai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.M2_NVEM_Lizdai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_Motinine_Plokste)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pavadinimas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dydis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cpu_Tipas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USB_ivestys)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ram_Lizdai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pcie_Lizdai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.M2_NVEM_Lizdai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_Motinine_Plokste)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.id_Motinine_Plokste }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_Motinine_Plokste })
+        </td>
+    </tr>
+}
+
+</table>

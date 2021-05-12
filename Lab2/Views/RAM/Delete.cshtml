@@ -1,0 +1,95 @@
+﻿@model Lab2.ViewModels.RAMEditViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are tikrai norite ištrinti?</h3>
+<div>
+    <h4>RAMEditViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pavadinimas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pavadinimas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Talpa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Talpa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Atmities_Tipas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Atmities_Tipas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ram_Greitis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ram_Greitis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dydis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dydis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Papildomi_Atributai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Papildomi_Atributai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_RAM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_RAM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Motherboard_connection)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motherboard_connection)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    @if (ViewBag.naudojama != null)
+    {
+        <h5>ViewBag.naudojama</h5>
+    }
+    else
+    {
+        <input type="submit" value="Šalinti" class="btn btn-danger" />
+    }
+    @Html.ActionLink("Atgal į sąrašą", "Index", "Modelis", new { @class = "btn btn-default" })
+</div>
+    }
+</div>

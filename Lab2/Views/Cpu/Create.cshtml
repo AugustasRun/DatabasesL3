@@ -1,0 +1,161 @@
+﻿@model Lab2.ViewModels.CpuEditList
+
+@{
+    ViewBag.Title = "Procesosių pildymo forma";
+    var psl_k_count = 0;
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Procesas</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.cpu.Pavadinimas, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cpu.Pavadinimas, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cpu.Pavadinimas, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cpu.Daznis, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cpu.Daznis, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cpu.Daznis, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cpu.Vatai, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cpu.Vatai, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cpu.Vatai, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cpu.Boost, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cpu.Boost, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cpu.Boost, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cpu.Manufacturer, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cpu.Manufacturer, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cpu.Manufacturer, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cpu.id_CPU, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cpu.id_CPU, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cpu.id_CPU, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cpu.idMotherboard, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.cpu.idMotherboard, Model.cpu.MotherBoardList, "-----------", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.cpu.idMotherboard, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <fieldset>
+        <legend>Papildomi Maitinimo šaltiniai</legend>
+        <table class="table-responsive" id="cooler">
+            <thead>
+                <tr>
+                    <th style="padding-left:10px; padding-top:10px">Pavadinimas</th>
+                    <th style="padding-left:10px; padding-top:10px">Paskirtis</th>
+                    <th style="padding-left:10px; padding-top:10px">Gamintojas</th>
+                    <th style="padding-left:10px; padding-top:10px">Ventiliatorius</th>
+                    <th style="padding-left:10px; padding-top:10px">Max_Apsukos</th>
+                    <th style="padding-left:10px; padding-top:10px">ID</th>
+                </tr>
+            </thead>
+
+        </table>
+        <input type="hidden" disabled value="0" id="hCount" />
+        <button id="prd" type="button" class="btn btn-info" onClick="prideti($('#hCount').val());"><i class="glyphicon-plus-sign"></i> Pridėti</button>
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Išsaugoti" style="margin-top: 5px;" class="btn btn-success" />
+            </div>
+        </div>
+        </fieldset>
+</div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    function prideti(sk) {
+        var tmp_row = `"<tr>
+                     <td style="padding-top:10px"">
+                        <input class="form-control text-box single-line" data-val-required="Pavadinimo laukas yra būtinas" id="Cooler`+ sk + `__Pavadinimas" name="coolers[` + sk + `].Pavadinimas" type="text" value="">
+                    </td>
+                     <td style="padding-left:10px; padding-top:10px">
+                        <input class="form-control text-box single-line" data-val-required="Maksimalios galios laukas yra būtinas" id="Cooler`+ sk + `__Paskirtis" name="coolers[` + sk + `].Paskirtis" type="text" value="">
+                     </td>
+                     <td style="padding-left:10px; padding-top:10px">
+                        <input class="form-control text-box single-line" data-val-required="Energijos effektyvumo laukas yra būtinas" id="Cooler`+ sk + `__Gamintojas" name="coolers[` + sk + `].Gamintojas" type="text" value="">
+                     </td>
+                     <td style="padding-left:10px; padding-top:10px">
+                        <input class="form-control text-box single-line" data-val-required="Ausintuvo dydis laukas yra būtinas" id="Cooler`+ sk + `__Ventiliatoriaus_dydis" name="coolers[` + sk + `].Fan_size" type="text" value="">
+                     </td>
+                     <td style="padding-left:10px; padding-top:10px">
+                        <input class="form-control text-box single-line" data-val-required="Jungikliai laukas yra būtinas" id="Cooler`+ sk + `__Max_apsukos" name="coolers[` + sk + `].Max_RPM" type="text" value="">
+                     </td>
+                     <td style="padding-left:10px; padding-top:10px">
+                        <input class="form-control text-box single-line" data-val-required="ID laukas yra būtinas" id="Cooler`+ sk + `__id_Aušintuvai" name="coolers[` + sk + `].id_Cooler" type="text" value="">
+                     </td>
+                        <td style="padding-left:10px; padding-top:10px"><button type="button" class="btn btn-danger" onclick="salinti(this)">Šalinti</button></td>
+                    </tr>"`;
+
+        $("#cooler tr:last").after(tmp_row);
+
+        $('#hCount').val(Number($('#hCount').val()) + 1);
+
+
+    };
+
+    function salinti(btn) {
+
+        $(btn).closest('tr').remove();
+        var cnt = 0;
+
+        $("#cooler tbody tr").each(function () {
+            var tmp_row = "<tr>" + $(this).html() + "</tr>";
+            var new_tmp_row = tmp_row.replace(/\[(.)\]/g, "[" + cnt + "]");
+            new_tmp_row = new_tmp_row.replace(/\_(.)\_/g, "_" + cnt + "_");
+            $(this).replaceWith(new_tmp_row);
+            cnt = cnt + 1;
+        });
+
+        $('#hCount').val(cnt);
+
+    }
+</script>
+
+

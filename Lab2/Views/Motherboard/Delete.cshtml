@@ -1,0 +1,88 @@
+﻿@model Lab2.Models.Motherboard
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are tikrai norite ištrinti?</h3>
+<div>
+    <h4>Motherboard</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pavadinimas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pavadinimas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dydis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dydis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cpu_Tipas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cpu_Tipas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USB_ivestys)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USB_ivestys)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ram_Lizdai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ram_Lizdai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pcie_Lizdai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pcie_Lizdai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.M2_NVEM_Lizdai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.M2_NVEM_Lizdai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_Motinine_Plokste)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_Motinine_Plokste)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

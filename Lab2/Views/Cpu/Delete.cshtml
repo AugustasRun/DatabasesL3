@@ -1,0 +1,111 @@
+﻿@model Lab2.ViewModels.CpuEditList
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Ištrinti Procesorių</h2>
+
+<h3>Are tikrai norite ištrinti?</h3>
+<div>
+    <h4>CpuEditViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cpu.Pavadinimas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpu.Pavadinimas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cpu.Daznis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpu.Daznis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cpu.Vatai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpu.Vatai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cpu.Boost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpu.Boost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cpu.Manufacturer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpu.Manufacturer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cpu.id_CPU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpu.id_CPU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cpu.idMotherboard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpu.idMotherboard)
+        </dd>
+    </dl>
+        <legend>Aušintuvai</legend>
+        <table class="table-responsive" id="cooler">
+            <thead>
+                <tr>
+                    <th style="padding-left:10px; padding-top:10px">Pavadinimas</th>
+                    <th style="padding-left:10px; padding-top:10px">Paskirtis</th>
+                    <th style="padding-left:10px; padding-top:10px">Gamintojas</th>
+                    <th style="padding-left:10px; padding-top:10px">Ventiliatorius</th>
+                    <th style="padding-left:10px; padding-top:10px">Max_Apsukos</th>
+                    <th style="padding-left:10px; padding-top:10px">ID</th>
+                </tr>
+            </thead>
+            @if (Model.coolers != null)
+            {
+                for (int i = 0; i < Model.coolers.Count; i++)
+                {
+                    <tr>
+                        <td style="padding-left:10px">@Html.DisplayFor(model => model.coolers[i].Pavadinimas, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td style="padding-left:10px; padding-top:10px">@Html.DisplayFor(model => model.coolers[i].Paskirtis, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td style="padding-left:10px; padding-top:10px">@Html.DisplayFor(model => model.coolers[i].Gamintojas, new { htmlAttributes = new { @class = "form-control" } }) </td>
+                        <td style="padding-left:10px; padding-top:10px">@Html.DisplayFor(model => model.coolers[i].Fan_size, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td style="padding-left:10px; padding-top:10px">@Html.DisplayFor(model => model.coolers[i].Max_RPM, new { htmlAttributes = new { @class = "form-control" } }) </td>
+                        <td style="padding-left:10px; padding-top:10px">@Html.DisplayFor(model => model.coolers[i].id_Cooler, new { htmlAttributes = new { @class = "form-control" } }) </td>
+
+                      
+                    </tr>
+                }
+            }
+
+        </table>
+
+    
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Lab2.ViewModels.RAMViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <h2>RAM</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pavadinimas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Talpa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Atmities_Tipas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ram_Greitis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dydis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Papildomi_Atributai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_RAM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Motherboard_connection)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pavadinimas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Talpa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Atmities_Tipas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ram_Greitis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dydis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Papildomi_Atributai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_RAM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Motherboard_connection)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.id_RAM  }) |
+            @Html.ActionLink("Delete", "Delete", new {  id=item.id_RAM })
+        </td>
+    </tr>
+}
+
+</table>

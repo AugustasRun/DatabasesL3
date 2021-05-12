@@ -1,0 +1,160 @@
+﻿@model Lab2.ViewModels.PowerBrickListAddView
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Sukurti Maitinimo šaltinį</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Maitinimo Šaltiniai</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.powerBrick.Pavadinimas, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.powerBrick.Pavadinimas, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.powerBrick.Pavadinimas, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.powerBrick.Power, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.powerBrick.Power, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.powerBrick.Power, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.powerBrick.Efficiency, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.powerBrick.Efficiency, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.powerBrick.Efficiency, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.powerBrick.Fan_size, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.powerBrick.Fan_size, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.powerBrick.Fan_size, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.powerBrick.Swithces, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.powerBrick.Swithces, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.powerBrick.Swithces, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.powerBrick.id_Power, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.powerBrick.id_Power, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.powerBrick.id_Power, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.powerBrick.Motherboard, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.powerBrick.Motherboard, Model.powerBrick.MotherBoardList, "-----------", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.powerBrick.Motherboard, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <fieldset>
+            <legend>Papildomi Maitinimo šaltiniai</legend>
+            <table class="table-responsive" id="kainos_tbl">
+                <thead>
+                    <tr>
+                        <th style="padding-left:10px; padding-top:10px">Pavadinimas</th>
+                        <th style="padding-left:10px; padding-top:10px">Maksimali galia</th>
+                        <th style="padding-left:10px; padding-top:10px">Efektyvumas</th>
+                        <th style="padding-left:10px; padding-top:10px">Ausintuvos dydis</th>
+                        <th style="padding-left:10px; padding-top:10px">Jungikliai</th>
+                        <th style="padding-left:10px; padding-top:10px">ID</th>
+                    </tr>
+                </thead>
+
+            </table>
+            <input type="hidden" disabled value="0" id="hCount" />
+            <button id="prd" type="button" class="btn btn-info" onClick="prideti($('#hCount').val());"><i class="glyphicon-plus-sign"></i> Pridėti</button>
+
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Išsaugoti" style="margin-top: 5px;" class="btn btn-success" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    function prideti(sk) {
+        var tmp_row = `"<tr>
+                     <td style="padding-top:10px"">
+                        <input class="form-control text-box single-line" data-val-required="Pavadinimo laukas yra būtinas" id="Brick`+ sk + `__Pavadinimas" name="list[` + sk + `].Pavadinimas" type="text" value="">
+                    </td>
+                     <td style="padding-left:10px; padding-top:10px">
+                        <input class="form-control text-box single-line" data-val-required="Maksimalios galios laukas yra būtinas" id="Brick`+ sk + `__Maksimali_galia" name="list[` + sk + `].Power" type="text" value="">
+                     </td>
+                     <td style="padding-left:10px; padding-top:10px">
+                        <input class="form-control text-box single-line" data-val-required="Energijos effektyvumo laukas yra būtinas" id="Brick`+ sk + `__Energijos_effektybumo_reitingas" name="list[` + sk + `].Efficiency" type="text" value="">
+                     </td>
+                     <td style="padding-left:10px; padding-top:10px">
+                        <input class="form-control text-box single-line" data-val-required="Ausintuvo dydis laukas yra būtinas" id="Brick`+ sk + `__Ausintuvo_dydis" name="list[` + sk + `].Fan_size" type="text" value="">
+                     </td>
+                     <td style="padding-left:10px; padding-top:10px">
+                        <input class="form-control text-box single-line" data-val-required="Jungikliai laukas yra būtinas" id="Brick`+ sk + `Jungikliai" name="list[` + sk + `].Swithces" type="text" value="">
+                     </td>
+                     <td style="padding-left:10px; padding-top:10px">
+                        <input class="form-control text-box single-line" data-val-required="ID laukas yra būtinas" id="Brick`+ sk + `id_Maitinimo_blokas" name="list[` + sk + `].id_Power" type="text" value="">
+                     </td>
+                        <td style="padding-left:10px; padding-top:10px"><button type="button" class="btn btn-danger" onclick="salinti(this)">Šalinti</button></td>
+                    </tr>"`;
+
+        $("#kainos_tbl tr:last").after(tmp_row);
+
+        $('#hCount').val(Number($('#hCount').val()) + 1);
+
+
+    };
+
+    function salinti(btn) {
+
+        $(btn).closest('tr').remove();
+        var cnt = 0;
+
+        $("#kainos_tbl tbody tr").each(function () {
+            var tmp_row = "<tr>" + $(this).html() + "</tr>";
+            var new_tmp_row = tmp_row.replace(/\[(.)\]/g, "[" + cnt + "]");
+            new_tmp_row = new_tmp_row.replace(/\_(.)\_/g, "_" + cnt + "_");
+            $(this).replaceWith(new_tmp_row);
+            cnt = cnt + 1;
+        });
+
+        $('#hCount').val(cnt);
+
+    }
+</script>
+
+

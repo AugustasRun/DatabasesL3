@@ -1,0 +1,59 @@
+﻿@model Lab2.ViewModels.CPUConnectionsViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Motininės plokštės cpu ir aušintuvų kiekiai</h2>
+<p><b>Parengta:</b> @DateTime.Now</p>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label>Sutartys nuo: </label>
+        @*<input class="form-inline date-picker" type="datetime" name="nuo" value="@Model.nuo" />*@
+        @Html.EditorFor(model => model.from, new { @class = "date-picker" })
+        <label>Sutartys iki: </label>
+        @*<input class="form-inline date-picker" type="datetime" name="iki" value="@Model.iki" />*@
+        @Html.EditorFor(model => model.to, new { @class = "date-picker" })
+        <input class="btn btn-default" type="submit" value="Atrinkti">
+    </div>
+}
+
+<table class="table table-striped">
+    <tr style="background-color:lightblue">
+        <th>
+            @Html.DisplayNameFor(model => model.list[0].Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.list[0].ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.list[0].Cpu_Count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.list[0].Cooler_Count)
+        </th>
+    </tr>
+
+    @if (Model.list.Count == 0)
+    {
+        <tr>
+            <td colspan="4" align="center"><b style="color:red;">Nurodytame laikotarpyje nebuvo užsakytų paslaugų</b></td>
+        </tr>
+
+    }
+
+    @for (int i = 0; i < Model.list.Count; i++)
+    {
+        <tr>
+            <td>@Model.list[i].Name</td>
+            <td>@Model.list[i].ID</td>
+            <td>@Model.list[i].Cpu_Count</td>
+            <td>@Model.list[i].Cooler_Count</td>
+        </tr>
+    }
+
+  
+   
+</table>
